@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajib Khupi Racing Team</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#000,#555,#c0c0c0);
+    color:white;
+}
+
+header{
+    background:#111;
+    padding:20px;
+    text-align:center;
+    border-bottom:3px solid silver;
+}
+
+header h1{
+    color:silver;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:rgba(0,0,0,0.8);
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    border:1px solid silver;
+}
+
+input,button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:5px;
+}
+
+input{
+    background:#eee;
+}
+
+button{
+    background:silver;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:white;
+}
+
+#preview{
+    max-width:100%;
+    margin-top:15px;
+    border-radius:10px;
+}
+
+#dashboard{
+    display:none;
+}
+
+.success{
+    color:lightgreen;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>AJIB KHUPI RACING TEAM</h1>
+    <p>Website Resmi Tim Balap</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Upload Gambar & Harga</h2>
+
+        <input type="file" id="gambar">
+
+        <input type="number" id="harga" placeholder="Masukkan Harga">
+
+        <button onclick="uploadData()">Simpan Data</button>
+
+        <img id="preview" style="display:none;">
+        <p id="hasil"></p>
+    </div>
+
+    <div class="card">
+        <h2>Login Dashboard</h2>
+
+        <input type="text" id="userid" placeholder="ID">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">Masuk Dashboard</button>
+    </div>
+
+    <div class="card" id="dashboard">
+        <h2>Dashboard Admin</h2>
+
+        <p><b>Status:</b> Login Berhasil</p>
+
+        <p>ID Admin: satria</p>
+
+        <p>Selamat datang di Dashboard Ajib Khupi Racing Team.</p>
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+<script>
+
+function uploadData(){
+
+    let file = document.getElementById("gambar").files[0];
+    let harga = document.getElementById("harga").value;
+
+    if(file){
+
+        let reader = new FileReader();
+
+        reader.onload = function(e){
+            document.getElementById("preview").src = e.target.result;
+            document.getElementById("preview").style.display="block";
+        }
+
+        reader.readAsDataURL(file);
+    }
+
+    document.getElementById("hasil").innerHTML =
+    "Data tersimpan. Harga: Rp " + harga;
+}
+
+function login(){
+
+    let id = document.getElementById("userid").value;
+    let pass = document.getElementById("password").value;
+
+    if(id==="satria" && pass==="satria333"){
+
+        document.getElementById("dashboard").style.display="block";
+
+        alert("Login Berhasil");
+
+    }else{
+
+        alert("ID atau Password Salah");
+
+    }
+}
+
+function logout(){
+
+    document.getElementById("dashboard").style.display="none";
+
+}
+</script>
+
+</body>
+</html>
